@@ -1,0 +1,5 @@
+# Temporary video rendering outputs
+production/day0/segments/
+production/day0/qc/
+__pycache__/
+*.pyc
