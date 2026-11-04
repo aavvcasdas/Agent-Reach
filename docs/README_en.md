@@ -258,6 +258,22 @@ It sits one level above any specific implementation — it handles **selection, 
 
 Every time you spin up a new Agent, you spend time finding tools, installing deps, and debugging configs — what reads Twitter? How do you log into Reddit? What replaces a discontinued XiaoHongShu CLI? Every time, you re-do the same work. Agent Reach does one simple thing: **the most reliable access path for each platform, chosen, installed, and health-checked for you. Access paths come and go (in March 2026 a batch of single-platform CLIs went unmaintained — we re-routed), so you don't have to care.**
 
+### 🎬 Making "AI girl runs the account" videos (whale girl, Claude-chan, Grok-chan …)
+
+Agent Reach does not render video itself, but the real loop behind those accounts is
+**read the platforms → write the script → render the film**, and two of those three are Agent Reach's job:
+
+- **Read**: competitor Bilibili / YouTube / XiaoHongShu / Twitter data and transcripts (Bilibili, YouTube,
+  XiaoHongShu, Twitter channels), plus comment mining and account post-mortems via Jina Reader on any page.
+- **Write**: topics, opening hooks and narration — your agent's job.
+- **Render**: **no video-generation model needed**. Code-rendered frames (HTML/JSON → frame-by-frame → ffmpeg),
+  one episode file per video; change a line and re-render in a minute.
+
+Engine choice, character art (whale girl / Claude-chan / Grok-chan sprites and Live2D), voices
+(TTS that returns word-level timings), and a 9:16 vertical route measured on a locked-down box are
+in **[docs/model-moe.md](model-moe.md)** (Chinese), which also breaks down why `aavvcasdas/ai-yunying`'s
+"one hand-written renderer per episode" gets slower every day, and how to swap only the engine.
+
 ### 🔌 Every platform = an ordered backend list (primary + fallbacks)
 
 Switching access paths means reordering the list, not rewriting code. `agent-reach doctor` tells you **which backend each platform is currently using**.
